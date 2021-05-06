@@ -1,0 +1,68 @@
+﻿<EditForm class="form-group" Model="@piatto" OnValidSubmit="@(e => onSalva.InvokeAsync(piatto))">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+
+
+
+    <div class="form-group">
+        <label for="piatto-allergene">Allergene</label>
+        <select class="form-control" id="piatto-allergene" @bind="piatto.ID_allergene" aria-label="Seleziona allergene">
+
+            @foreach (Allergene allergene in db.Allergeni)
+            {
+                <option value="@allergene.ID_allergene" default>@allergene.Descr_allergene. </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="piatto-stagione">stagione</label>
+        <select class="form-control" id="piatto-stagione" @bind="piatto.ID_stagione" aria-label="Seleziona la stagione">
+
+            @foreach (Stagione stagione in db.Stagioni)
+            {
+                <option value="@stagione.ID_stagione" default>@stagione.Descr_stagione </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="piatto-portata">portata</label>
+        <select class="form-control" id="piatto-portata" @bind="piatto.ID_tp_portata" aria-label="Seleziona la portata">
+
+            @foreach (Portata portata in db.Portate)
+            {
+                <option value="@portata.ID_tp_portata" default>@portata.Descr_portata </option>
+            }
+        </select>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="piatto-prezzo">Prezzo </label>
+        <InputNumber id="piatto-prezzo" @bind-Value="piatto.Prezzo" class="form-control" placeholder="Inserisci il prezzo del piatto" />
+
+    </div>
+
+
+
+    <button class="btn btn-primary">Salva</button>
+    <button type="reset" class="btn btn-danger" @onclick="onAnnulla">Annulla</button>
+</EditForm>
+
+
+@code { [Parameter]
+    public Piatto piatto { get; set; }
+
+    [Parameter]
+    public BancaDati db { get; set; }
+
+    [Parameter]
+    public EventCallback<Piatto> onSalva { get; set; }
+
+    [Parameter]
+    public EventCallback onAnnulla { get; set; } }
+

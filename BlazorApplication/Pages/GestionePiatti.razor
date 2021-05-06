@@ -1,0 +1,119 @@
+﻿@page "/GestionePiatti"
+@using System.Threading;
+@inject BancaDati db
+
+<h3>Gestione Piatti</h3>
+
+
+@if (attivo == null)
+{
+
+    <p>In questa pagina puoi creare, modificare o eliminare piatti.</p>
+    <button type="button" class="btn btn-primary mb-3" aria-label="Crea un piatto" @onclick="OnAggiungi">
+        <span class="oi oi-plus" style="color: white; margin-right: 10px"></span>
+        Crea un piatto
+    </button>
+
+    <PiattiTableCmp db="db" onElimina="OnCancella" onModifica="OnModifica" />
+
+
+
+
+}
+
+else
+    {
+        <PiattoFormCmp piatto="attivo" db="db" onSalva="OnSalva" onAnnulla="OnAnnulla" />
+
+
+    }
+
+
+
+@code {
+
+
+    public List<Piatto> Piatti_Lista = new List<Piatto>();
+
+    public Piatto attivo;
+    //  public Piatto attuale = null;
+
+    //   public Piatto daModificare;
+
+    protected override void OnInitialized()  // LC perchè ?
+    {//dati tramite la nostra classe di interfaccia e con essa selezionare da BancaDati tutte le note
+     //  presenti in DB!
+        base.OnInitialized();
+        Piatti_Lista = db.Piatti.Select(x => new Piatto()
+        {
+            ID_piatto = x.ID_piatto,
+            ID_allergene = x.ID_allergene,
+            ID_stagione = x.ID_stagione,
+            ID_tp_portata = x.ID_tp_portata,
+            Prezzo = x.Prezzo
+        }).ToList();
+    }
+
+    public void OnAggiungi()
+    {
+        attivo = new Piatto();
+    }
+
+
+
+
+    public void OnModifica(Piatto elemento)  //modifica il record selezionato
+    {  // imposta l'oggetto globale con i valori della selezione
+
+        // altrimenti effettuare modifica campo campo
+        attivo = elemento;
+
+    }
+
+    public void OnCancella(Piatto elemento)
+    {
+
+        db.Piatti.Remove(elemento); // db
+        db.SaveChanges();// db
+    }
+
+
+
+
+
+    private void OnSalva(Piatto elemento)
+    {
+        // Piatto selezionato = db.Piatti.FirstOrDefault(rep => rep.ID_reperto == elemento.ID_reperto);
+
+        if (elemento.ID_allergene == 0 || elemento.ID_stagione == 0 || elemento.ID_tp_portata == 0)
+        {
+            return;
+        }
+
+        if (attivo.ID_piatto == 0) // se nuovo elemento
+        {
+            db.Piatti.Add(elemento);
+            //  Piatti_Lista.Add(elemento);
+        }
+        else  //
+        {
+            attivo = elemento;
+            //Piatti_Lista.Add(elemento);
+            db.Piatti.Update(elemento);
+
+            //selezionato.Descrizione = selezionato.Descrizione;
+            //selezionato.ID_periodo = selezionato.ID_periodo;
+            //selezionato.Id_tipologia = selezionato.Id_tipologia;
+        }
+
+        db.SaveChanges();
+        attivo = null;
+
+    }
+
+    private void OnAnnulla()
+    {
+        attivo = null;
+    }
+
+}

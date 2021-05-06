@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApplication
 {
@@ -28,7 +29,9 @@ namespace BlazorApplication
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+           
+            
+            services.AddDbContext<BancaDati>(opt => opt.UseSqlite("DataSource=Data/SQLLITE.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

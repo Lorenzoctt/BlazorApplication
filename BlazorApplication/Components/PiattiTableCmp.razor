@@ -1,0 +1,75 @@
+﻿<h3>Elenco piatti inseriti</h3>
+
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th width="1%">Codice piatto</th>
+            <th>Allergene</th>
+            <th>Stagione</th>
+            <th>Portata</th>
+            <th>Prezzo €</th>
+            <th width="1%">Modifica</th>
+            <th width="1%">Cancella</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Piatto piatto in db.Piatti)
+        {
+        <tr>
+            <td>@piatto.ID_piatto</td>
+
+            <td>@GetAllergene(piatto)</td>
+            <td>@GetStagione(piatto)</td>
+            <td>@GetPortata(piatto)</td>
+            <td>@piatto.Prezzo</td>
+
+
+            <td>
+                <button class="btn btn-primary" @onclick="(e => onModifica.InvokeAsync(piatto))">
+                    <span class="oi oi-pencil" style="color: white;"></span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" @onclick="(e => onElimina.InvokeAsync(piatto))">
+                    <span class="oi oi-trash" style="color: white"></span>
+                </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@code { [Parameter]
+    public BancaDati db { get; set; }
+
+    [Parameter]
+    public EventCallback<Piatto> onElimina { get; set; }
+
+    [Parameter]
+    public EventCallback<Piatto> onModifica { get; set; }
+
+
+    public string GetAllergene(Piatto piatto)
+    {
+        Allergene allergene = db.Allergeni.Single(per => per.ID_allergene == piatto.ID_allergene);
+        return allergene.Descr_allergene;
+    }
+
+
+
+    public string GetStagione(Piatto piatto)
+    {
+        Stagione stagione = db.Stagioni.Single(per => per.ID_stagione == piatto.ID_stagione);
+        return stagione.Descr_stagione;
+    }
+    public string GetPortata(Piatto piatto)
+    {
+        Portata portata = db.Portate.Single(per => per.ID_tp_portata == piatto.ID_tp_portata);
+        return portata.Descr_portata;
+    }
+
+
+}

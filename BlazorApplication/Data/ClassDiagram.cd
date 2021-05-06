@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BlazorApplication.Data.BancaDati">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAAAAAAAACAI=</HashCode>
+      <FileName>Data\BancaDati.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorApplication.Data.Tipologia">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Tipologia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorApplication.Allergene">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Data\Allergene.cs</FileName>
+      <NewMemberFileName>ALLERGENE.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorApplication.Piatto">
+    <Position X="1" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Data\Piatto.cs</FileName>
+      <NewMemberFileName>PIATTO.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorApplication.Portata">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Portata.cs</FileName>
+      <NewMemberFileName>PORTATA.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorApplication.Stagione">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Stagione.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
