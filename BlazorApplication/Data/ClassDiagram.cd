@@ -39,7 +39,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BlazorApplication.Stagione">
-    <Position X="3" Y="4.75" Width="1.5" />
+    <Position X="3" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\Stagione.cs</FileName>
